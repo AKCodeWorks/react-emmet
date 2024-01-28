@@ -36,7 +36,7 @@
       {
         "command": "extension.generateUseStateSnippet",
         "key": "enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /javascript|typescript|javascriptreact|typescriptreact/"
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /javascript|typescript|javascriptreact|typescriptreact/ && textInputFocus && isInUseStatePattern"
       }
     ]
   },

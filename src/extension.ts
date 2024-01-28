@@ -1,10 +1,28 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-  // is the extension active or not??
   console.log("Extension 'ActualReactEmmet' is now active");
 
-  // register the command
+  // Listener for text changes in the active editor
+  vscode.workspace.onDidChangeTextDocument((event) => {
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      const position = editor.selection.active;
+      const line = editor.document.lineAt(position.line).text;
+
+      // Check if the line ends with 'useState.' or 'usestate.' pattern (case-insensitive)
+      const isInUseStatePattern = /usestate\.\w*$/i.test(line);
+
+      // Set the context variable based on the pattern
+      vscode.commands.executeCommand(
+        "setContext",
+        "isInUseStatePattern",
+        isInUseStatePattern
+      );
+    }
+  });
+
+  // Register the command
   let disposable = vscode.commands.registerCommand(
     "extension.generateUseStateSnippet",
     () => {
@@ -13,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
         const position = editor.selection.active;
         const line = editor.document.lineAt(position.line).text;
 
-        // extract variable name from the pattern no matter case sensitivity
+        // Extract variable name from the pattern (case-insensitive)
         const useStateRegex = /usestate\.(\w+)$/i;
         const match = line.match(useStateRegex);
 
@@ -23,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
             variableName
           )}] = useState();`;
 
-          // replace the line with the generated snippet...probably an easier way to do this but I cant figure it out...
+          // Replace the line with the generated snippet
           editor.edit((editBuilder) => {
             const range = new vscode.Range(
               new vscode.Position(position.line, 0),
@@ -38,7 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(disposable);
 
-  // function to capitalize the first letter
+  // Function to capitalize the first letter
   function capitalizeFirstLetter(string: string): string {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }

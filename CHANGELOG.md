@@ -2,6 +2,12 @@
 
 All notable changes to the "react-emmet" extension will be documented in this file.
 
+## [0.0.4 Preview]
+
+### BUGFIX
+
+- Fixed an error where users couldn't go to the next line unless it contained the word usestate.
+
 ## [0.0.3 Preview]
 
 ### Changes

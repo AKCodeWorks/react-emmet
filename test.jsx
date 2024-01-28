@@ -1,3 +1,5 @@
-import useState from "react";
+import {useState} from "react";
 
-usestate;
+const [name, setName] = useState();
+const [age, setAge] = useState();
+const [gender, setGender] = useState();

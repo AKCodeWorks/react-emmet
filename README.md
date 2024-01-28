@@ -46,3 +46,6 @@ Actual React Emmet is released under the [MIT License](LICENSE.txt).
 ## About the Author
 
 Actual React Emmet is developed and maintained by [AK CodeWorks](https://github.com/AKCodeWorks)
+
+
+I am not sure if an extension like this already exists, but I have never found one that quite worked like true HTML emmet, but for react. This is a preview build so use it at your own risk, useState is supported for now, but I will be adding more as time goes on.

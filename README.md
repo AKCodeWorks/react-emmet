@@ -72,6 +72,33 @@ This functionality is available in various file types commonly used in React dev
 
 - #### This also works with async snippets.
 
+## Component Generation
+
+You can easily generate a React Component snippet by typing `fc.ComponentName` for functional components
+OR `cc.ComponentName` for class components and pressing Enter. The extension automatically expands this into a properly formatted React Component.
+
+For example, typing `fc.ComponentName` and pressing Enter will generate:
+
+```javascript
+const ComponentName = () => {
+  return (
+    <div></div>
+  );
+};
+```
+
+## Component props support
+
+- For example: `fc.ComponentName[firstName, lastName]` will create:
+
+  ```javascript
+  const ComponentName = ({firstName, lastName}) => {
+    return (
+      <div></div>
+    );
+  };
+  ```
+
 ### Planned Features
 
 In future updates, we plan to extend support to other React hooks, such as `useContext`, and more, following the same intuitive Emmet-like pattern for quick and efficient coding.

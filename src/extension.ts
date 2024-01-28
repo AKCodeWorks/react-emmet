@@ -8,12 +8,19 @@ export function activate(context: vscode.ExtensionContext) {
     if (editor) {
       const position = editor.selection.active;
       const line = editor.document.lineAt(position.line).text;
-      const isPatternPresent = /use(state|effect)\.\w+.*$/i.test(line);
+      const isReactHookPatternPresent = /use(state|effect)\.\w+.*$/i.test(line);
 
       vscode.commands.executeCommand(
         "setContext",
         "isReactHookPattern",
-        isPatternPresent
+        isReactHookPatternPresent
+      );
+
+      const isComponentPatternPresent = /(fc|cc)\.\w+.*$/i.test(line);
+      vscode.commands.executeCommand(
+        "setContext",
+        "isReactComponentPattern",
+        isComponentPatternPresent
       );
     }
   });
@@ -61,7 +68,50 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  context.subscriptions.push(disposable);
+  let disposable2 = vscode.commands.registerCommand(
+    "extension.generateReactComponentSnippet",
+    () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
+
+      const position = editor.selection.active;
+      const line = editor.document.lineAt(position.line).text;
+
+      const componentRegex = /(fc|cc)\.(\w+)(\[(.*)\])?$/i;
+      const match = line.match(componentRegex);
+
+      if (!match) {
+        return;
+      }
+
+      const componentType = match[1].toLowerCase();
+      const componentName = match[2];
+      const componentProps = match[4];
+
+      let snippet = "";
+
+      if (componentType === "fc") {
+        snippet = generateFunctionalComponentSnippet(
+          componentName,
+          componentProps
+        );
+      } else if (componentType === "cc") {
+        snippet = generateClassComponentSnippet(componentName);
+      }
+
+      // Replace the line with the generated snippet
+      editor.edit((editBuilder) => {
+        const range = new vscode.Range(
+          new vscode.Position(position.line, 0),
+          new vscode.Position(position.line, line.length)
+        );
+        editBuilder.replace(range, snippet);
+      });
+    }
+  );
+  context.subscriptions.push(disposable2);
 
   // Helper functions
   function capitalizeFirstLetter(string: string): string {
@@ -82,5 +132,17 @@ export function activate(context: vscode.ExtensionContext) {
     const asyncSnippet = isAsync ? `async ` : "";
     const functionCall = isAsync ? `${functionName}();` : `${functionName}();`;
     return `useEffect(() => {\n  ${asyncSnippet}function ${functionName}() {\n    // Your code here\n  }\n  ${functionCall}\n}, ${dependencies});`;
+  }
+
+  function generateFunctionalComponentSnippet(
+    componentName: string,
+    componentProps?: string
+  ): string {
+    const props = componentProps ? `{${componentProps}}` : "";
+    return `const ${componentName} = (${props}) => {\n  return (\n    <div></div>\n  );\n};`;
+  }
+
+  function generateClassComponentSnippet(componentName: string): string {
+    return `class ${componentName} extends React.Component {\n  render() {\n    return (\n      <div></div>\n    );\n  }\n}`;
   }
 }

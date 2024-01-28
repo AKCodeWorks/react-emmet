@@ -2,7 +2,7 @@
   "name": "actual-react-emmet",
   "displayName": "Actual React Emmet",
   "description": "Create react hooks using emmet",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "preview": true,
   "engines": {
     "vscode": "^1.85.0"

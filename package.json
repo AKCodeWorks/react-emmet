@@ -2,7 +2,7 @@
   "name": "actual-react-emmet",
   "displayName": "Actual React Emmet",
   "description": "Create react hooks using emmet",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "preview": true,
   "engines": {
     "vscode": "^1.85.0"
@@ -28,15 +28,15 @@
   "contributes": {
     "commands": [
       {
-        "title": "Use State Emmet",
-        "command": "extension.generateUseStateSnippet"
+        "command": "extension.generateReactHookSnippet",
+        "title": "Generate React Hook"
       }
     ],
     "keybindings": [
       {
-        "command": "extension.generateUseStateSnippet",
+        "command": "extension.generateReactHookSnippet",
         "key": "enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /javascript|typescript|javascriptreact|typescriptreact/ && textInputFocus && isInUseStatePattern"
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /javascript|typescript|javascriptreact|typescriptreact/ && isReactHookPattern"
       }
     ]
   },

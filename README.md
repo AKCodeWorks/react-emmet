@@ -12,9 +12,9 @@ Currently, the extension supports the `useState` hook. You can easily generate a
 
 For example, typing `usestate.count` and pressing Enter will generate:
 
-\```javascript
+```javascript
 const [count, setCount] = useState();
-\```
+```
 
 This functionality is available in various file types commonly used in React development, including `.js`, `.jsx`, `.ts`, and `.tsx`.
 

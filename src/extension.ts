@@ -1,20 +1,19 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log("Extension 'useStateSnippetGenerator' is now active");
+  console.log("Extension 'ActualReactEmmet' is now active");
 
-  // Listen to text document changes
   vscode.workspace.onDidChangeTextDocument((event) => {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
       const position = editor.selection.active;
       const line = editor.document.lineAt(position.line).text;
 
-      // Set context variable based on pattern match
+      // Set context variable based on pattern match (case-insensitive)
       vscode.commands.executeCommand(
         "setContext",
         "useStateSnippetActive",
-        /usestate\.\w+$/.test(line)
+        /usestate\.\w+$/i.test(line)
       );
     }
   });
@@ -28,8 +27,8 @@ export function activate(context: vscode.ExtensionContext) {
         const position = editor.selection.active;
         const line = editor.document.lineAt(position.line).text;
 
-        // Extract variable name from the pattern
-        const useStateRegex = /^usestate\.(\w+)$/;
+        // Extract variable name from the pattern (case-insensitive)
+        const useStateRegex = /^usestate\.(\w+)$/i;
         const match = line.match(useStateRegex);
 
         if (match) {
@@ -57,9 +56,4 @@ export function activate(context: vscode.ExtensionContext) {
   function capitalizeFirstLetter(string: string): string {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-}
-
-// this method is called when your extension is deactivated
-export function deactivate() {
-  console.log("Extension 'useStateSnippetGenerator' is now deactivated");
 }

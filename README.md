@@ -6,7 +6,7 @@ Actual React Emmet is a Visual Studio Code extension designed to enhance the pro
 
 ### useState Hook Generation
 
-Currently, the extension supports the `useState` hook. You can easily generate a `useState` hook snippet by typing `usestate.variableName` and pressing Enter. The extension automatically expands this into a properly formatted `useState` hook.
+Currently, the extension supports the `useState` hook. You can easily generate a `useState` hook snippet by typing `usestate.variableName` OR `useState.variableName` and pressing Enter. The extension automatically expands this into a properly formatted `useState` hook.
 
 For example, typing `usestate.count` and pressing Enter will generate:
 

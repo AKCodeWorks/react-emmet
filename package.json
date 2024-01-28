@@ -2,14 +2,17 @@
   "name": "actual-react-emmet",
   "displayName": "Actual React Emmet",
   "description": "Create react hooks using emmet",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "preview": true,
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Snippets",
+    "Keymaps"
   ],
+  "icon": "ico.png",
   "activationEvents": [
     "onLanguage:javascript",
     "onLanguage:javascriptreact",
@@ -17,6 +20,7 @@
     "onLanguage:typescriptreact"
   ],
   "main": "./dist/extension.js",
+  "publisher": "AKCodeWorks",
   "repository": {
     "type": "Git",
     "url": "https://github.com/AKCodeWorks/react-emmet"

@@ -2,6 +2,13 @@
 
 All notable changes to the "react-emmet" extension will be documented in this file.
 
+## [0.0.2 Preview]
+
+### Changes
+
+- Made usestate case insensitive so that auto capitalization will not affect the extension.
+- Added an icon image.
+
 ## [0.0.1 Preview]
 
 ### Use State Snippet Created

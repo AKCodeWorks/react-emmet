@@ -18,18 +18,67 @@ const [count, setCount] = useState();
 
 This functionality is available in various file types commonly used in React development, including `.js`, `.jsx`, `.ts`, and `.tsx`.
 
+## useEffect Hook Generation
+
+- Type `useeffect.<functionName>` and press Enter to create a `useEffect` hook.
+
+![Use Effect Demo](/useeffectdemo.gif)
+
+- For example: `useeffect.fetchData` will create:
+
+- ```javascript
+  useEffect(() => {
+    function fetchData() {
+      // Your code here
+    }
+    fetchData();
+  }, []);
+  ```
+
+## Async useEffect Support
+
+- ### Create an async `useEffect` by typing `useeffect.<functionName>.async`.
+
+![Demo](/useeffectasyncdemo.gif)
+
+- For example: `useeffect.loadData.async` will create:
+
+  ```javascript
+
+  useEffect(() => {
+    async function loadData() {
+      // Your code here
+    }
+    await loadData();
+  }, []);
+  ```
+
+## Dependency array support
+
+- ### Append `[arg1, arg2]` to specify dependencies.
+
+![Demo](/useeffectdependency.gif)
+
+- For example: `useeffect.updateData[arg1, arg2]` will create:
+
+  ```javascript
+  useEffect(() => {
+    function updateData() {
+      // Your code here
+    }
+    updateData();
+  }, [arg1, arg2]);
+  ```
+
+- #### This also works with async snippets.
+
 ### Planned Features
 
-In future updates, we plan to extend support to other React hooks, such as `useEffect`, `useContext`, and more, following the same intuitive Emmet-like pattern for quick and efficient coding.
+In future updates, we plan to extend support to other React hooks, such as `useContext`, and more, following the same intuitive Emmet-like pattern for quick and efficient coding.
 
 ## How to Use
 
 To use the extension, simply open a React file and type the shorthand notation for a hook, followed by a variable name. Press Enter, and the extension will expand it into the corresponding hook code snippet.
-
-Example:
-
-- Type `usestate.age` and press Enter.
-- The extension will generate `const [age, setAge] = useState();` in your code.
 
 ## Installation
 
@@ -46,3 +95,5 @@ Actual React Emmet is released under the [MIT License](LICENSE.txt).
 ## About the Author
 
 Actual React Emmet is developed and maintained by [AK CodeWorks](https://github.com/AKCodeWorks)
+
+I am not sure if an extension like this already exists, but I have never found one that quite worked like true HTML emmet, but for react. This is a preview build so use it at your own risk, useState is supported for now, but I will be adding more as time goes on.

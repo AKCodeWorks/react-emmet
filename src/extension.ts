@@ -3,21 +3,6 @@ import * as vscode from "vscode";
 export function activate(context: vscode.ExtensionContext) {
   console.log("Extension 'ActualReactEmmet' is now active");
 
-  vscode.workspace.onDidChangeTextDocument((event) => {
-    const editor = vscode.window.activeTextEditor;
-    if (editor) {
-      const position = editor.selection.active;
-      const line = editor.document.lineAt(position.line).text;
-
-      // Set context variable based on pattern match (case-insensitive)
-      vscode.commands.executeCommand(
-        "setContext",
-        "useStateSnippetActive",
-        /usestate\.\w+$/i.test(line)
-      );
-    }
-  });
-
   // Register the command
   let disposable = vscode.commands.registerCommand(
     "extension.generateUseStateSnippet",
@@ -28,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
         const line = editor.document.lineAt(position.line).text;
 
         // Extract variable name from the pattern (case-insensitive)
-        const useStateRegex = /^usestate\.(\w+)$/i;
+        const useStateRegex = /usestate\.(\w+)$/i;
         const match = line.match(useStateRegex);
 
         if (match) {

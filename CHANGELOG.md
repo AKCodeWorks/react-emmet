@@ -2,6 +2,13 @@
 
 All notable changes to the "react-emmet" extension will be documented in this file.
 
+## [0.0.3 Preview]
+
+### Changes
+
+- Fixed an error where snippet was only created at the top level of a file.
+- Fixed an error where snippets were always created no matter what file type was.
+
 ## [0.0.2 Preview]
 
 ### Changes

@@ -1,9 +1,10 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
+  // is the extension active or not??
   console.log("Extension 'ActualReactEmmet' is now active");
 
-  // Register the command
+  // register the command
   let disposable = vscode.commands.registerCommand(
     "extension.generateUseStateSnippet",
     () => {
@@ -12,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
         const position = editor.selection.active;
         const line = editor.document.lineAt(position.line).text;
 
-        // Extract variable name from the pattern (case-insensitive)
+        // extract variable name from the pattern no matter case sensitivity
         const useStateRegex = /usestate\.(\w+)$/i;
         const match = line.match(useStateRegex);
 
@@ -22,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
             variableName
           )}] = useState();`;
 
-          // Replace the line with the generated snippet
+          // replace the line with the generated snippet...probably an easier way to do this but I cant figure it out...
           editor.edit((editBuilder) => {
             const range = new vscode.Range(
               new vscode.Position(position.line, 0),
@@ -37,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(disposable);
 
-  // Function to capitalize the first letter
+  // function to capitalize the first letter
   function capitalizeFirstLetter(string: string): string {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }

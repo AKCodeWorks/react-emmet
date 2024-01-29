@@ -83,6 +83,7 @@ To use the extension, simply open a React file and type the shorthand notation f
 ## Installation
 
 You can install Actual React Emmet from the Visual Studio Code Marketplace. Search for "Actual React Emmet" in the Extensions view in Visual Studio Code and click Install.
+[Installation link](https://marketplace.visualstudio.com/items?itemName=AKCodeWorks.actual-react-emmet)
 
 ## Contributions
 

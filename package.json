@@ -30,6 +30,10 @@
       {
         "command": "extension.generateReactHookSnippet",
         "title": "Generate React Hook"
+      },
+      {
+        "command": "extension.generateReactComponentSnippet",
+        "title": "Generate React Component"
       }
     ],
     "keybindings": [
@@ -37,6 +41,11 @@
         "command": "extension.generateReactHookSnippet",
         "key": "enter",
         "when": "editorTextFocus && !editorReadonly && editorLangId =~ /javascript|typescript|javascriptreact|typescriptreact/ && isReactHookPattern"
+      },
+      {
+        "command": "extension.generateReactComponentSnippet",
+        "key": "enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /javascript|typescript|javascriptreact|typescriptreact/ && isReactComponentPattern"
       }
     ]
   },
